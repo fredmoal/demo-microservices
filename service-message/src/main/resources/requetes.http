@@ -1,0 +1,12 @@
+POST http://localhost:8085/messages
+Content-Type: application/json
+Accept: application/json
+
+{"texte": "ca marche !", "utilisateur": "fred"}
+
+### ne fonctionne pas -> curl http://localhost:8085/messages/subscribe
+GET http://localhost:8085/messages/subscribe
+
+###
+GET http://localhost:8085/messages/0
+

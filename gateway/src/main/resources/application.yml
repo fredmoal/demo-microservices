@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+    consul:
+      discovery:
+        register: false
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+server:
+  port: 8080
+
+

@@ -1,0 +1,32 @@
+version: '3'
+services:
+  discovery:
+    image: consul:1.7
+    ports:
+      - 8500:8500
+
+  service-message:
+    image: demo-microservices/service-message
+    environment:
+      - JAVA_TOOL_OPTIONS=
+        -DCONSUL_HOST=discovery
+    depends_on:
+      - discovery
+
+  service-auth:
+    image: demo-microservices/service-auth
+    environment:
+      - JAVA_TOOL_OPTIONS=
+        -DCONSUL_HOST=discovery
+    depends_on:
+      - discovery
+
+  gateway:
+    image: demo-microservices/gateway
+    ports:
+      - 8080:8080
+    environment:
+      - JAVA_TOOL_OPTIONS=
+        -DCONSUL_HOST=discovery
+    depends_on:
+      - discovery

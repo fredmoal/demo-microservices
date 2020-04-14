@@ -1,0 +1,15 @@
+POST http://localhost:8080/api/service/messages
+Content-Type: application/json
+
+{"texte": "depuis la passerelle !", "utilisateur": "fred"}
+
+###
+GET http://localhost:8080/api/service/messages/0
+
+###
+GET http://localhost:8080/api/service/messages/subscribe
+
+###
+POST http://localhost:8080/api/auth/login?login=fred&password=fred
+
+###
