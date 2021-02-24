@@ -28,13 +28,11 @@ public class GatewayApplication {
                                 .preserveHostHeader()
                         )
                         .uri("lb://service-message")
-                        .id("service-message")
                 )
                 .route(r -> r.path("/api/auth/**")
                         .filters(f -> f.rewritePath("/api/auth/(?<remains>.*)", "/${remains}")                                )
                         .uri("lb://service-auth")
-                        .id("service-auth"))
+                )
                 .build();
     }
-
 }
