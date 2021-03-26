@@ -1,0 +1,14 @@
+POST http://localhost:8088/login
+Content-Type: application/json
+
+{"username": "user", "password": "user"}
+
+> {% client.global.set("auth_token", response.headers.valueOf("Authorization")); %}
+###
+POST http://localhost:8088/register
+Content-Type: application/json
+
+{"username": "fred", "password": "fred"}
+
+### récupération de la clé publique dans Consul
+GET http://localhost:8500/v1/kv/publicKey?raw=true
