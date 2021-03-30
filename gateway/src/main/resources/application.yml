@@ -9,7 +9,7 @@ spring:
           enabled: true
     consul:
       discovery:
-        register: false
+        register: true
       host: ${CONSUL_HOST:localhost}
       port: ${CONSUL_PORT:8500}
     loadbalancer:

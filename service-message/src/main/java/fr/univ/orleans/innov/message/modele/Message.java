@@ -1,4 +1,4 @@
-package fr.univ.orleans.innov.message.controller;
+package fr.univ.orleans.innov.message.modele;
 
 
 public class Message {

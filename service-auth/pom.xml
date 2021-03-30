@@ -82,44 +82,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>2.1.0</version>
-                <executions>
-                    <execution>
-                        <id>default</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>dockerBuild</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
-                    <container>
-                        <!-- pour exporter un no de port :
-                            <ports>
-                                <port>8761</port>
-                            </ports>
-                        -->
-                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
-                    </container>
-                    <from>
-                        <image>openjdk:14-alpine</image>
-                    </from>
-                    <to>
-                        <image>demo-microservices/${project.name}</image>
-                        <!-- génère un latest flag par défaut ; pour fixer un no de version, décommenter :
-                        <tags>
-                            <tag>${project.version}</tag>
-                        </tags>
-                        -->
-                    </to>
+                    <imageName>demo-microservices/${project.name}</imageName>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 

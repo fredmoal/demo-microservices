@@ -1,8 +1,17 @@
+### get AUTH token before API call
+POST http://localhost:8088/login
+Content-Type: application/json
+
+{"username": "user", "password": "user"}
+
+> {% client.global.set("auth_token", response.headers.valueOf("Authorization")); %}
+###
 POST http://localhost:8085/messages
+Authorization: {{auth_token}}
 Content-Type: application/json
 Accept: application/json
 
-{"texte": "ca marche !", "utilisateur": "fred"}
+{"texte": "ca marche !"}
 
 ### ne fonctionne pas -> curl http://localhost:8085/messages/subscribe
 GET http://localhost:8085/messages/subscribe

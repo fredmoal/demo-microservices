@@ -11,7 +11,7 @@ public class User {
     private static final String[] ROLES_USER  = {"ROLE_USER"};
 
     @Id
-    @Size(min = 2)
+    @Size(min = 2, max = 20)
     private String username;
     @NotEmpty
     @Size(min = 2)
