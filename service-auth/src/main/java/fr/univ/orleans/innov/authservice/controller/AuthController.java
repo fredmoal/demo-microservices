@@ -27,10 +27,7 @@ public class AuthController {
     @Autowired
     private KeyStore keyStore;
 
-    static class AuthDTO {
-        public String username;
-        public String password;
-    }
+    record AuthDTO(String username, String password) {};
 
     @PostMapping("/login")
     public ResponseEntity login(@Valid @RequestBody AuthDTO auth) {
@@ -49,8 +46,8 @@ public class AuthController {
         if (userRepository.existsById(user.getUsername())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         };
-        user.setAdmin(false); // !!
-        User registerUser = userRepository.save(user);
+        User savedUser = new User(user.getUsername(), passwordEncoder.encode(user.getPassword()), false);
+        User registerUser = userRepository.save(savedUser);
         return ResponseEntity
                 .ok()
                 .header(HttpHeaders.AUTHORIZATION, JwtTokens.TOKEN_PREFIX+jwtTokens.genereToken(registerUser))
