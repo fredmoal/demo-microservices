@@ -31,6 +31,8 @@ public class MessageServiceApplication {
     private String consulHost;
     @Value("${spring.cloud.consul.port}")
     private String consulPort;
+    @Value("${publicKey}")
+    private String publicKeyString;
 
     private static final Logger logger = LoggerFactory.getLogger(MessageServiceApplication.class);
 
@@ -41,6 +43,7 @@ public class MessageServiceApplication {
 
     @Bean
     PublicKey getPublicKeyFromConsul() throws NoSuchAlgorithmException, InvalidKeySpecException {
+/*
         // récupération de la clé publique dans le Key/Value store de Consul
         final WebClient webClientLogin = WebClient.create("http://"+consulHost+":"+consulPort);
 
@@ -61,10 +64,11 @@ public class MessageServiceApplication {
             SpringApplication.exit(ctx, () -> 0);
             return null;
         }
+*/
 
-        logger.info("public key from consul : "+publicKey);
+        logger.info("public key from consul : "+publicKeyString);
         // decode public key from String
-        byte[] publicBytes = Base64.getDecoder().decode(publicKey);
+        byte[] publicBytes = Base64.getDecoder().decode(publicKeyString);
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicBytes);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         PublicKey pubKey = keyFactory.generatePublic(keySpec);

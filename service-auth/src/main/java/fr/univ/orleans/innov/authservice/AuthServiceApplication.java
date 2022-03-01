@@ -58,7 +58,7 @@ public class AuthServiceApplication {
 
             var response = client
                     .put()
-                    .uri("/v1/kv/publicKey")
+                    .uri("/v1/kv/config/application/publicKey")
                     .contentType(MediaType.TEXT_PLAIN)
                     .bodyValue(publicKey)
                     .exchange().block();
